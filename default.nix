@@ -1,8 +1,17 @@
-{ nixpkgs, declInput }: let pkgs = import nixpkgs {}; in {
+{ nixpkgs, declInput }:
+
+let
+  pkgs = import nixpkgs {};
+
+  release = "22.05";
+
+in
+{
   jobsets = pkgs.runCommand "spec.json" {} ''
     cat <<EOF
     ${builtins.toXML declInput}
     EOF
+
     cat > $out <<EOF
     {
         "master": {
@@ -18,7 +27,7 @@
             "keepnr": 3,
             "inputs": {
                 "src": { "type": "git", "value": "git://github.com/shlevy/declarative-hydra-example.git", "emailresponsible": false },
-                "nixpkgs": { "type": "git", "value": "git://github.com/NixOS/nixpkgs.git release-16.03", "emailresponsible": false }
+                "nixpkgs": { "type": "git", "value": "git://github.com/peterhoeg/nixpkgs.git release-${release}", "emailresponsible": false }
             }
         }
     }
@@ -26,4 +35,3 @@
     EOF
   '';
 }
-
