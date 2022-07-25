@@ -31,7 +31,7 @@
     {
       packages."${system}" = {
         default = pkgs.hello;
-        jobsets = specFile { master = spec; };
+        # jobsets = specFile { master = spec; };
       };
 
       devShells.${system}.default = pkgs.mkShell {
@@ -45,13 +45,9 @@
 
       };
 
-      hydraSpecs = {
-        jobsets = specFile { master = spec; };
-      };
-
       hydraJobs = {
-        # jobsets = specFile { master = spec; };
-        hello."${system}" = self.packages."${system}".default;
+        jobsets = specFile { master = spec; };
+        # hello."${system}" = self.packages."${system}".default;
       };
     };
 }
