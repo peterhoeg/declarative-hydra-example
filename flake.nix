@@ -11,7 +11,7 @@
 
       pkgs = import nixpkgs { inherit system; };
 
-      specFile = (pkgs.formats.json { }).generate "spec.json" {
+      specFile = name: (pkgs.formats.json { }).generate name {
         enabled = 1;
         type = 1;
         hidden = false;
@@ -30,14 +30,18 @@
       };
 
       devShells.${system}.default = pkgs.mkShell {
-        shellHook = ''
-          cp --no-preserve=all ${specFile} ./${specFile.name}
-        '';
+        shellHook =
+          let
+            f = specFile "spec.json";
+          in
+          ''
+            cp --no-preserve=all ${f} ./${f.name}
+          '';
 
       };
 
       hydraJobs = {
-        jobsets.".jobsets" = specFile;
+        jobsets = specFile "jobsets.json";
         hello."${system}" = self.packages."${system}".default;
       };
     };
