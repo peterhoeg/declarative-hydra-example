@@ -40,9 +40,8 @@
 
       };
 
-      jobsets = { master = specFile "jobsets.json"; };
-
       hydraJobs = {
+        jobsets = { master = specFile "jobsets.json"; };
         hello."${system}" = self.packages."${system}".default;
       };
     };
