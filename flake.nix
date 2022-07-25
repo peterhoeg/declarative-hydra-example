@@ -30,7 +30,7 @@
     in
     {
       packages."${system}" = {
-        # default = pkgs.hello;
+        default = pkgs.hello;
         jobsets = specFile { master = spec; };
       };
 
@@ -45,10 +45,9 @@
 
       };
 
-
       hydraJobs = {
         jobsets = specFile { master = spec; };
-        hello."${system}" = self.packages."${system}".default;
+        # hello."${system}" = self.packages."${system}".default;
       };
     };
 }
