@@ -1,16 +1,12 @@
 {
-    "enabled": 1,
-    "hidden": false,
-    "description": "Jobsets",
-    "nixexprinput": "src",
-    "nixexprpath": "default.nix",
-    "checkinterval": 300,
-    "schedulingshares": 100,
-    "enableemail": false,
-    "emailoverride": "",
-    "keepnr": 3,
-    "inputs": {
-        "src": { "type": "git", "value": "https://github.com/peterhoeg/declarative-hydra-example.git", "emailresponsible": false },
-        "nixpkgs": { "type": "git", "value": "https://github.com/NixOS/nixpkgs.git release-22.05", "emailresponsible": false }
-    }
+  "checkinterval": 300,
+  "description": "Demo jobset",
+  "emailoverride": "",
+  "enabled": 1,
+  "enableemail": false,
+  "flake": "github:peterhoeg/declarative-hydra-example/flake",
+  "hidden": false,
+  "keepnr": 3,
+  "schedulingshares": 1,
+  "type": 1
 }
