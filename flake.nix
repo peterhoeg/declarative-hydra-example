@@ -47,6 +47,7 @@
       jobsets = specFile { master = spec; };
 
       hydraJobs = {
+        jobsets = specFile { master = spec; };
         hello."${system}" = self.packages."${system}".default;
       };
     };
