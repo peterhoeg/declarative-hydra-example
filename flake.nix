@@ -45,9 +45,13 @@
 
       };
 
-      hydraJobs = {
+      hydraSpecs = {
         jobsets = specFile { master = spec; };
-        # hello."${system}" = self.packages."${system}".default;
+      };
+
+      hydraJobs = {
+        # jobsets = specFile { master = spec; };
+        hello."${system}" = self.packages."${system}".default;
       };
     };
 }
